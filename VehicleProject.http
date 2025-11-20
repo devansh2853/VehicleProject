@@ -1,0 +1,25 @@
+@VehicleProject_HostAddress = http://localhost:5230
+
+GET {{VehicleProject_HostAddress}}/Car
+Accept: application/json
+
+###
+PUT {{VehicleProject_HostAddress}}/Car/2
+Content-Type: application/json
+
+{
+    "Id": 2,
+    "Make": "Red",
+    "Model": "Honda",
+    "Engine": "V4",
+    "Doors": 4,
+    "Wheels": 4,
+    "VehicleType": "Car",
+    "BodyType": "Sedan"
+}
+###
+GET {{VehicleProject_HostAddress}}/Car/2
+Accept: application/json
+
+###
+DELETE {{VehicleProject_HostAddress}}/Car/3
