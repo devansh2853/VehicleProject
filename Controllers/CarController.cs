@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using VehicleProject.Data;
@@ -88,5 +89,26 @@ public class CarController : ControllerBase
             return StatusCode(StatusCodes.Status500InternalServerError, err.Message);
         }
     }
+    [HttpGet("fields")]
+    public ActionResult GetCarFields()
+    {
+        try
+        {
+            var fields = typeof(Car)
+            .GetProperties()
+            .Where(p=>p.Name != "Id")
+            .Select(p=>new {
+                name=p.Name, 
+                type=p.PropertyType.Name,
+                required=Attribute.IsDefined(p, typeof(RequiredAttribute))
+                });
+            return Ok(fields);
+        }
+        catch (Exception err)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, err.Message);
+        }
+        
 
+    }
 }

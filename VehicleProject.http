@@ -4,11 +4,10 @@ GET {{VehicleProject_HostAddress}}/Car
 Accept: application/json
 
 ###
-PUT {{VehicleProject_HostAddress}}/Car/2
+POST {{VehicleProject_HostAddress}}/Car
 Content-Type: application/json
 
 {
-    "Id": 2,
     "Make": "Red",
     "Model": "Honda",
     "Engine": "V4",
@@ -17,9 +16,21 @@ Content-Type: application/json
     "VehicleType": "Car",
     "BodyType": "Sedan"
 }
+{
+    "Model": "Grand i10",
+    "Bodytype": "Sedan",
+    "Doors": "4",
+    "Engine": "V4",
+    "Wheels": "4",
+    "Make": "Gray"
+}
 ###
 GET {{VehicleProject_HostAddress}}/Car/2
 Accept: application/json
 
 ###
 DELETE {{VehicleProject_HostAddress}}/Car/3
+
+###
+GET {{VehicleProject_HostAddress}}/Car/fields
+Accept: application/json
